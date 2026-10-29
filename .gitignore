@@ -1,0 +1,32 @@
+# Dependencies and generated output
+node_modules/
+playwright-report/
+test-results/
+coverage/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+.auth/
+playwright/.auth/
+**/auth.json
+**/credentials*.json
+**/secrets*.json
+**/*storage-state*.json
+**/*storageState*.json
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.crt
+id_rsa
+id_ed25519
+*.db
+*.sqlite
+
+# Local machine files and logs
+.DS_Store
+Thumbs.db
+*.log
+*.har
