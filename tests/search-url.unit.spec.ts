@@ -1,15 +1,15 @@
 import { expect, test } from "@playwright/test";
-import { buildSearchUrl } from "./search-url";
+import { buildSearchUrl } from "../utils/search-url";
 
 const multiFilterParameters = [
-  ["collectionIds", "redacted-id"],
-  ["collectionIds", "redacted-id"],
+  ["collectionIds", "collection-a"],
+  ["collectionIds", "collection-b"],
   ["collectionIdsOperator", "oneOf"],
   ["name", "y"],
   ["nameOperator", "equals"],
   ["type", "video"],
   ["typeOperator", "equals"],
-  ["keywords", "redacted-id"],
+  ["keywords", "sample-keyword"],
   ["keywordsOperator", "noneOf"],
   ["color", "true"],
   ["colorOperator", "isSet"],
@@ -34,15 +34,15 @@ test("round-trips the reported multi-filter search state", () => {
   const params = getParams(buildSearchUrl(multiFilterParameters));
 
   expect(params.getAll("collectionIds")).toEqual([
-    "redacted-id",
-    "redacted-id",
+    "collection-a",
+    "collection-b",
   ]);
   expect(params.get("collectionIdsOperator")).toBe("oneOf");
   expect(params.get("name")).toBe("y");
   expect(params.get("nameOperator")).toBe("equals");
   expect(params.get("type")).toBe("video");
   expect(params.get("typeOperator")).toBe("equals");
-  expect(params.get("keywords")).toBe("redacted-id");
+  expect(params.get("keywords")).toBe("sample-keyword");
   expect(params.get("keywordsOperator")).toBe("noneOf");
   expect(params.get("color")).toBe("true");
   expect(params.get("colorOperator")).toBe("isSet");
